@@ -1,3 +1,5 @@
+unsigned long timing =0;
+
 #include "pitches.h"
 #include "button.h"
 #include "buzzer.h"
@@ -9,34 +11,38 @@ Button buttonMelodyOne(PIN_BUTTON_MEL_ONE);
 Buzzer buzzer(PIN_BUZZER);
 
 int i = 1;
-int notes[] = {NOTE_G4,NOTE_G4,NOTE_G4,NOTE_DS4,NOTE_AS4,NOTE_G4,NOTE_DS4,NOTE_AS4,NOTE_G4,
-               NOTE_D5,NOTE_D5,NOTE_D5,NOTE_DS5,NOTE_AS4,NOTE_G4,NOTE_DS4,NOTE_AS4,NOTE_G4,
-               NOTE_G5,NOTE_G4,NOTE_G4, NOTE_G5,NOTE_FS5,NOTE_F5,NOTE_E5,NOTE_DS5,NOTE_E5,
+int notes[] = {NOTE_G5,NOTE_G4,NOTE_G4, NOTE_G5,NOTE_FS5,NOTE_F5,NOTE_E5,NOTE_DS5,NOTE_E5,
                NOTE_GS4,NOTE_CS5,NOTE_C5,NOTE_B4,NOTE_AS4,NOTE_A4,NOTE_AS4,
                NOTE_DS4,NOTE_FS4,NOTE_DS4,NOTE_AS4,NOTE_G4};
-double durations[] = {350,350,350,250,100,350,250,100,700,
-                      350,350,350,250,100,350,250,100,700,
-                      784,392,392,784,739,698,659,622,659,
-                      415,554,523,493,466,440,466,
-                      311,350,250,100,750};
-int melodyLength = 4;
+double durations[] = {7,3,3,7,7,6,6,6,6,
+                      4,5,5,4,4,4,4,
+                      3,3,2,1,7};
+int melodyLength = 21;
 
 void setup()
 {
     buzzer.setMelody(notes, durations, melodyLength);
+    buzzer.turnSoundOn(); 
+
 }
 
 void loop()
 {
-    if (buttonMelodyOne.wasPressed())
+       if (buttonMelodyOne.wasPressed())
     {   
-       for (i=1; i<5; i++){
+       for (i = 1; i < 5; i++)
+       {
          tone(PIN_BUZZER, notes[0]);
          delay (500);
          noTone(PIN_BUZZER);
          delay (5000);
         }
-        buzzer.setMelody(notes, durations, melodyLength);
-        buzzer.turnSoundOn();
+    
+        while (timing = 5000)
+        {
+        buzzer.playSound();
+        timing = millis();
+        }
+        //buzzer.turnSoundOff(); 
     }
 }
