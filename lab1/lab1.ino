@@ -1,4 +1,4 @@
-unsigned long timing =0;
+
 
 #include "pitches.h"
 #include "button.h"
@@ -30,7 +30,7 @@ void loop()
 {
        if (buttonMelodyOne.wasPressed())
     {   
-       for (i = 1; i < 5; i++)
+       for (i = 1; i < 6; i++)
        {
          tone(PIN_BUZZER, notes[0]);
          delay (500);
@@ -38,11 +38,9 @@ void loop()
          delay (5000);
         }
     
-        while (timing = 5000)
+        while (true)
         {
         buzzer.playSound();
-        timing = millis();
-        }
-        //buzzer.turnSoundOff(); 
+        } 
     }
 }
